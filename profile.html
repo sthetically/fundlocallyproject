@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Profile - FundLocally</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="business.html">Businesses</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="donate.html">Donate</a></li>
+    </ul>
+  </nav>
+
+  <section class="profile-creation">
+    <h2>Create Your Profile</h2>
+    <form id="profileForm">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="text" id="location" placeholder="City/State" />
+      <textarea id="bio" placeholder="Tell us about yourself..." rows="5"></textarea>
+
+      <label for="logo">Upload Business Logo:</label>
+      <input type="file" id="logo" accept="image/*" />
+      <img id="logoPreview" src="" alt="Logo Preview" style="max-width: 200px; display: none; margin-top: 10px;"/>
+      <img id="logoPreview" src="path/to/default/logo.png" alt="Logo Preview" style="max-width: 200px; display: none; margin-top: 10px;" />
+
+
+      <button type="submit">Create Profile</button>
+    </form>
+  </section>
+
+  <section id="profilePreview" style="display:none;">
+    <h2>Your Profile</h2>
+    <p><strong>Name:</strong> <span id="previewName"></span></p>
+    <p><strong>Email:</strong> <span id="previewEmail"></span></p>
+    <p><strong>Location:</strong> <span id="previewLocation"></span></p>
+    <p><strong>Bio:</strong> <span id="previewBio"></span></p>
+    <div id="previewLogoContainer" style="margin-top: 15px;"></div>
+  </section>
+
+  <script>
+    const donations = [];
+
+    document.getElementById("profileForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const profile = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        location: document.getElementById("location").value,
+        bio: document.getElementById("bio").value
+      };
+
+      localStorage.setItem("userProfile", JSON.stringify(profile));
+
+      document.getElementById("previewName").innerText = profile.name;
+      document.getElementById("previewEmail").innerText = profile.email;
+      document.getElementById("previewLocation").innerText = profile.location;
+      document.getElementById("previewBio").innerText = profile.bio;
+
+      const logoInput = document.getElementById("logo");
+      const previewLogoContainer = document.getElementById("previewLogoContainer");
+      previewLogoContainer.innerHTML = "";
+      if (logoInput.files && logoInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          img.alt = "Uploaded Logo";
+          img.style.maxWidth = "200px";
+          previewLogoContainer.appendChild(img);
+        }
+        reader.readAsDataURL(logoInput.files[0]);
+      }
+
+      document.getElementById("profileForm").style.display = "none";
+      document.getElementById("profilePreview").style.display = "block";
+    });
+  </script>
+
+</body>
+</html>

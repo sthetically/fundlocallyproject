@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FundLocally - Events</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="business.html">Businesses</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="profile.html">Profile</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="donate.html">Donate</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Upcoming Events</h1>
+  </header>
+
+  <section class="businesses-preview" id="eventsPreview">
+    <!-- Events will be loaded here -->
+  </section>
+
+  <script>
+    // Updated events with links to business profiles
+    const events = [
+      {
+        title: "Mother's Day Bouquets",
+        date: "May 11, 2025",
+        location: "Online Purchases",
+        description: "Order now to get your bouquets in time for Mother's Day!",
+        image: "img/bouquet-event.jpeg",
+        link: "business.html" // <-- navigate here on click
+      },
+      {
+        title: "Mother's Day Treats",
+        date: "May 11, 2025",
+        location: "Online Purchases",
+        description: "Get a sweet treat for your mom for Mother's Day!",
+        image: "img/baked-event.jpeg",
+        link: "business.html" // <-- you can customize different links later
+      },
+    ];
+
+    const eventsPreview = document.getElementById("eventsPreview");
+
+    events.forEach(event => {
+      const card = document.createElement("div");
+      card.className = "card"; // matches your styles
+
+      const link = document.createElement("a");
+      link.href = event.link; 
+
+      const img = document.createElement("img");
+      img.src = event.image;
+      img.alt = event.title;
+
+      link.appendChild(img); // image inside link
+
+      const title = document.createElement("h3");
+      title.innerText = event.title;
+
+      const date = document.createElement("p");
+      date.innerHTML = `<strong>Date:</strong> ${event.date}`;
+
+      const location = document.createElement("p");
+      location.innerHTML = `<strong>Location:</strong> ${event.location}`;
+
+      const description = document.createElement("p");
+      description.innerText = event.description;
+
+      card.appendChild(link); // clickable image
+      card.appendChild(title);
+      card.appendChild(date);
+      card.appendChild(location);
+      card.appendChild(description);
+
+      eventsPreview.appendChild(card);
+    });
+  </script>
+
+  <footer>
+    <p>&copy; 2025 FundLocally. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

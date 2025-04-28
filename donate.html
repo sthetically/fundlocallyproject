@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - FundLocally</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="business.html">Businesses</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="donate.html">Donate</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Donate via Zelle</h1>
+    </header>
+
+    <section class="donation-container">
+        <p>Send your donation via Zelle. Phone numbers are provided on Business Profiles.</p>
+        <p>Once your donation is sent, please click the button below to confirm your donation.</p>
+
+        <button id="confirm-donation">Confirm Donation</button>
+        <div id="donation-status" style="display: none; margin-top: 20px;">
+            <p>Thank you for your donation! Your support is appreciated.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 FundLocally. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Handle donation confirmation
+        document.getElementById("confirm-donation").addEventListener("click", function() {
+            document.getElementById("donation-status").style.display = "block";
+            this.style.display = "none";  // Hide the confirm button after donation
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FundLocally - Businesses</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Updated CSS to display cards on the same line */
+        .business-card {
+            display: flex;
+            flex-wrap: wrap; /* Cards wrap to the next line if necessary */
+            justify-content: center; /* Centers the cards */
+            gap: 20px; /* Space between cards */
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 300px; /* Adjust width as needed */
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            margin: 10px;
+        }
+
+        /* Additional styling for images */
+        .banner-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .price-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .buttons .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .buttons .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="business.html">Businesses</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="donate.html">Donate</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Our Businesses</h1>
+    </header>
+
+    <section class="businesses-preview" id="businessesPreview">
+        
+        <div id="businessList" style="display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px;"></div>
+    </section>
+
+    <section class="business-card">
+        
+        <div class="card">
+            <img src="img/luxury-bouquets-banner.png" alt="Banner for Luxury Bouquets by Lisa" class="banner-img">
+            
+            <div class="card-content">
+                <img src="img/luxury-bouquets-pricelist.png" alt="Luxury Bouquets price list" class="price-img">
+
+                <div class="buttons">
+                    <a class="button" href="donate.html">Donate</a>
+                    <a class="button" href="https://www.instagram.com/luxury.bouquets.by.lisa/" target="_blank" rel="noopener noreferrer">Purchase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="img/baked-by-alyssa.jpg" alt="Baked by Alyssa" class="banner-img">
+            
+            <div class="card-content">
+                <img src="img/baked-pricelist.jpg" alt="Baked price list" class="price-img">
+
+                <div class="buttons">
+                    <a class="button" href="donate.html">Donate</a>
+                    <a class="button" href="https://www.instagram.com/bakedby.alyssa_/" target="_blank" rel="noopener noreferrer">Purchase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="img/lash-banner.jpg" alt="Lash With Brianna" class="banner-img">
+            
+            <div class="card-content">
+                <img src="img/lash-pricelist.jpg" alt="Lash price list" class="price-img">
+
+                <div class="buttons">
+                    <a class="button" href="donate.html">Donate</a>
+                    <a class="button" href="https://www.instagram.com/lashwithbrianna/" target="_blank" rel="noopener noreferrer">Purchase</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Load profiles from localStorage (ensure localStorage contains business data)
+        const businessList = document.getElementById("businessList");
+        const profiles = JSON.parse(localStorage.getItem("businessProfiles")) || [];
+
+        function createBusinessCard(profile) {
+            const card = document.createElement("div");
+            card.classList.add("card");
+
+            // Add logo if available
+            if (profile.logo) {
+                const logoImg = document.createElement("img");
+                logoImg.src = profile.logo;
+                logoImg.classList.add("banner-img");
+                card.appendChild(logoImg);
+            }
+
+            // Add business name
+            const name = document.createElement("h3");
+            name.innerText = profile.name;
+            card.appendChild(name);
+
+            // Add location
+            const location = document.createElement("p");
+            location.innerText = profile.location;
+            card.appendChild(location);
+
+            // Add bio
+            const bio = document.createElement("p");
+            bio.innerText = profile.bio;
+            card.appendChild(bio);
+
+            // Add donation and purchase buttons
+            const buttons = document.createElement("div");
+            buttons.classList.add("buttons");
+
+            const donateButton = document.createElement("a");
+            donateButton.classList.add("button");
+            donateButton.href = "donate.html";
+            donateButton.innerText = "Donate";
+            buttons.appendChild(donateButton);
+
+            const purchaseButton = document.createElement("a");
+            purchaseButton.classList.add("button");
+            purchaseButton.href = profile.purchaseLink;
+            purchaseButton.target = "_blank";
+            purchaseButton.rel = "noopener noreferrer";
+            purchaseButton.innerText = "Purchase";
+            buttons.appendChild(purchaseButton);
+
+            card.appendChild(buttons);
+
+            // Add the card to the business list
+            businessList.appendChild(card);
+        }
+
+        // Create a card for each business profile
+        profiles.forEach((profile) => createBusinessCard(profile));
+    </script>
+
+    <footer>
+        <p>&copy; 2025 FundLocally. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
