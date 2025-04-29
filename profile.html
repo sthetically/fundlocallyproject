@@ -25,10 +25,12 @@
     <form id="profileForm">
       <input type="text" id="name" placeholder="Full Name" required />
       <input type="email" id="email" placeholder="Email" required />
-      <input type="text" id="location" placeholder="City/State" />
+      <input type="text" id="location" placeholder="Phone Number" />
       <textarea id="bio" placeholder="Tell us about yourself..." rows="5"></textarea>
 
       <label for="logo">Upload Business Logo:</label>
+      <input type="file" id="logo" accept="image/*" />
+      <label for="logo">Upload Business Pricelist:</label>
       <input type="file" id="logo" accept="image/*" />
       <img id="logoPreview" src="" alt="Logo Preview" style="max-width: 200px; display: none; margin-top: 10px;"/>
       <img id="logoPreview" src="path/to/default/logo.png" alt="Logo Preview" style="max-width: 200px; display: none; margin-top: 10px;" />
