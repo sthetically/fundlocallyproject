@@ -1,7 +1,8 @@
-// routes/donations.js
+// donations.js
 const express = require("express");
-const Donation = require("../models/Donation");
-const User = require("../models/User");
+
+const Donation = require("./Donation");
+const User = require("./User");
 
 const router = express.Router();
 
