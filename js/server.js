@@ -82,3 +82,11 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  console.log('Login details:', { email, password });
+
+  // Mock login logic (usually you would compare with stored credentials)
+  res.send({ message: 'Login successful!' });
+});
+
