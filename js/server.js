@@ -69,6 +69,15 @@ app.post('/login', (req, res) => {
 });
 
 // Start the server
+
+app.post('/submit-registration', (req, res) => {
+  const { name, email, password } = req.body;
+  console.log('Registration details:', { name, email, password });
+
+  // Mocking registration success
+  res.send({ message: 'Registration successful!' });
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
