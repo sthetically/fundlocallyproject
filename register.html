@@ -6,6 +6,41 @@
     <title>Register - FundLocally</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+    <script>
+  document.getElementById("registrationForm").addEventListener("submit", function (e) {
+    e.preventDefault();  // Prevent the form from submitting normally
+
+    // Get form data
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    // Create an object with the data
+    const userData = {
+      name: name,
+      email: email,
+      password: password
+    };
+
+    // Send data to the backend using fetch (POST request)
+    fetch('/submit-registration', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Show success message or handle errors
+      alert(data.message);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+</script>
+
 <body>
     <nav>
         <ul>
